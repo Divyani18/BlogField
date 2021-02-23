@@ -12,7 +12,7 @@ var express          = require("express"),
     expressSanitizer = require("express-sanitizer");
 
 //App config
-mongoose.connect(dbUrl, {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(dburl, {useNewUrlParser: true, useUnifiedTopology: true})
 .then(() => {
 	console.log("DB CONNECTED!");
 })
