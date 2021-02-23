@@ -12,7 +12,14 @@ var express          = require("express"),
     expressSanitizer = require("express-sanitizer");
 
 //App config
-mongoose.connect(dburl, {useNewUrlParser: true});
+mongoose.connect(dbUrl, {useNewUrlParser: true, useUnifiedTopology: true})
+.then(() => {
+	console.log("DB CONNECTED!");
+})
+.catch(err => {
+	console.log("OOPS! Error ocurred in connecting to mongo!");
+	console.log(err);
+});
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(expressSanitizer());
