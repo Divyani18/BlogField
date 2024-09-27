@@ -6,6 +6,7 @@ const dburl = process.env.DB_URL;
 
 var express          = require("express"),
 	app              = express(),
+	path		 = require("path"),
 	bodyParser       = require("body-parser"),
 	mongoose         = require("mongoose"),
 	methodOverride   = require("method-override"),
