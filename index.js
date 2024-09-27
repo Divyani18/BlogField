@@ -6,7 +6,7 @@ const dburl = process.env.DB_URL;
 
 var express          = require("express"),
 	app              = express(),
-	path		 = require("path"),
+	path             = require("path"),
 	bodyParser       = require("body-parser"),
 	mongoose         = require("mongoose"),
 	methodOverride   = require("method-override"),
@@ -22,9 +22,12 @@ mongoose.connect(dburl, {useNewUrlParser: true, useUnifiedTopology: true})
 	console.log(err);
 });
 app.set("view engine", "ejs");
+app.set('views', path.join(__dirname, '/views'))
+app.use(express.static(path.join(__dirname, '/public')))
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(expressSanitizer());
-app.use(express.static("public"));
+
 app.use(methodOverride("_method"));
 
 //Mongoose schema, model
@@ -111,7 +114,9 @@ app.delete("/blog/:id", function(req, res){
 	});
 });
 
-const port = process.env.PORT || 3000;
-app.listen(port, function(){
-	console.log("Server is running!!!");
-});
+// const port = process.env.PORT || 3000;
+// app.listen(port, function(){
+// 	console.log("Server is running!!!");
+// });
+
+module.exports = app;
