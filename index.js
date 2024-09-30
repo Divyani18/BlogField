@@ -3,6 +3,7 @@ if(process.env.NODE_ENV != "production"){
 }
 
 const dburl = process.env.DB_URL;
+const db = process.env.DB
 
 var express          = require("express"),
 	app              = express(),
@@ -13,7 +14,7 @@ var express          = require("express"),
     expressSanitizer = require("express-sanitizer");
 
 //App config
-mongoose.connect(dburl, {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(dburl, {useNewUrlParser: true, useUnifiedTopology: true, dbName: db})
 .then(() => {
 	console.log("DB CONNECTED!");
 })
